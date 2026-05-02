@@ -1,0 +1,2 @@
+# filepath: c:\Users\ESTO-2756\New folder\Projeto\requirements.txt
+Flask==3.0.0

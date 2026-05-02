@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Gerador de Senhas</h1>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="tamanho">Tamanho da senha:</label>
+                <input type="number" id="tamanho" name="tamanho" value="12" min="4" max="64" required>
+            </div>
+            
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="minusculas" checked>
+                    Letras minúsculas (a-z)
+                </label>
+                <label>
+                    <input type="checkbox" name="maiusculas" checked>
+                    Letras maiúsculas (A-Z)
+                </label>
+                <label>
+                    <input type="checkbox" name="numeros" checked>
+                    Números (0-9)
+                </label>
+                <label>
+                    <input type="checkbox" name="especiais" checked>
+                    Caracteres especiais (!@#$%...)
+                </label>
+            </div>
+            
+            <button type="submit">Gerar Senha</button>
+        </form>
+        
+        {% if senha %}
+        <div class="resultado">
+            <label>Senha gerada:</label>
+            <div class="senha-box">
+                <code>{{ senha }}</code>
+                <button class="copy-btn" onclick="copiarSenha()">📋 Copiar</button>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        function copiarSenha() {
+            const senha = document.querySelector('.senha-box code').textContent;
+            navigator.clipboard.writeText(senha).then(() => {
+                alert('Senha copiada!');
+            });
+        }
+    </script>
+</body>
+</html>
